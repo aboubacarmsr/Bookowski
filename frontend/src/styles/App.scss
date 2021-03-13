@@ -1,0 +1,85 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    margin: 0 auto;
+    height: 100%;
+    width: 90%;
+    line-height: 1.6;
+    background-color: #f5f5f5;
+}
+
+.App {
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+} 
+
+@import './Header';
+@import './Footer';
+@import './Home';
+@import './Product';
+@import './ProductPage';
+@import './SideNav';
+@import './Search';
+@import './CartPage';
+@import './LoginPage';
+@import './RegisterPage';
+@import './Profile';
+@import './Shipping';
+@import './CheckoutSteps';
+@import './Payment';
+@import './PlaceOrder';
+@import './Order';
+@import './UserList';
+@import './UserEdit';
+@import './ProductList';
+@import './ProductEdit';
+
+.open {
+    opacity: 0.5;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+    margin-top: 2em;
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even){
+      background-color: #E0E0E0
+    }
+
+// @font-face {
+//     font-family: "Avenir Next Regular";
+//     src: local("Avenir Next Regular"),
+//         url("/fonts/AvenirNextLTPro-Regular.otf") format("opentype");
+//     font-weight: normal;
+// }
+
+// @font-face {
+//     font-family: "Avenir Next Bold";
+//     src: local("Avenir Next Bold"),
+//         url("/fonts/AvenirNextLTPro-Bold.otf") format("opentype");
+//     font-weight: bold;
+// }
+
+// @font-face {
+//     font-family: "ITC Avant Garde Gothic Bold";
+//     src: local("ITC Avant Garde Gothic Bold"),
+//         url("/fonts/AvenirNextLTPro-Regular.otf") format("opentype");
+//     font-weight: bold;
+// }

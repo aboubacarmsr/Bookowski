@@ -1,0 +1,102 @@
+.cart-page {
+  margin-top: 5em;
+  .title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    width: 90%;
+    margin: 0 auto;
+    @media screen and (max-width: 800px){
+      width: 100%;
+      text-align: center;
+    }
+  }
+  .cart-wrapper {
+    .items-in-cart {
+      display: flex;
+      flex-direction: column;
+      margin: 1em auto;
+      width: 90%;
+      @media screen and (max-width: 800px){
+        width: 100%;
+      }
+      .item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1em 0;
+        @media screen and (max-width: 800px) {
+          min-height: 250px;
+          flex-direction: column;
+          text-align: center;
+          justify-content: center;
+          margin-bottom: 1em;
+          > * {
+              padding: 0.5em 0;
+          }
+        }
+        &:nth-child(1n + 2) {
+          border-top: 1px solid #b6b6b6;
+        }
+        img {
+          width: 15%;
+          object-fit: cover;
+          @media screen and (max-width: 800px) {
+            width: 35%;
+          }
+        }
+        .item-name {
+          width: 30%;
+          @media screen and (max-width: 800px) {
+            width: 100%;
+          }
+          h3{
+            font-size: 1.2rem;
+          }
+          h5{
+            margin-top: 0.5em;
+            color: #333333;
+            font-size: 0.9rem;
+          }
+        }
+        .item-price {
+          font-weight: 500;
+        }
+      }
+    }
+  }
+
+  .summary { 
+    width: 100%;
+    padding: 1em;
+    background-color: rgb(199, 199, 199);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    @media screen and (max-width: 800px){
+      flex-direction: column;
+    }
+    .shopping-infos {
+      display: flex;
+      flex-direction: column;
+      // > * {
+      //   padding: 1em 0;
+      // }
+      h2 > span, h3 > span {
+        color: #333333;
+      }
+      button {
+        border: none;
+        outline: none;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 500;
+        font-size: 0.9rem;
+        background-color: #000;
+        color: #fff;
+        padding: 1.5em;
+        width: 100%;
+        cursor: pointer;
+      }
+    }
+  }
+}

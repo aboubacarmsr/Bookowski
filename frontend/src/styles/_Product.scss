@@ -1,0 +1,33 @@
+.product {
+    display: flex;
+    flex-direction: column;
+    img{
+        display: block;
+        width: 100%;
+        min-height: 250px;
+        object-fit: cover;
+        margin-bottom: 0.5em;
+    }
+    .product-card {
+        display: flex;
+        flex-direction: column;
+        .author {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: rgba(0, 0, 0, 0.63);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .name {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin: 0.3em 0;
+            font-family: 'Playfair Display', serif;
+        }
+        .price {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #ff304f;
+        }
+    }
+}

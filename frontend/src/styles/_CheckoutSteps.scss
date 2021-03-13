@@ -1,0 +1,13 @@
+ .checkout-steps{
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     .step-active {
+         color: rgb(23, 23, 255);
+     }
+
+     NavLink {
+         text-decoration: none;
+         color: #000;
+     }
+ }

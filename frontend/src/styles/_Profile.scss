@@ -1,0 +1,53 @@
+.profile {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2em;
+    @media screen and (max-width: 800px) {
+        flex-direction: column;
+    }
+    .profile-form {
+        min-height: 50vh;
+        @media screen and (max-width: 800px) {
+            width: 100%;
+            order: 2;
+        }
+        h3{
+            margin-bottom: 2em;
+        }
+        input{
+            display: block; 
+            margin: 0.7em 0;
+            padding: 0.5em;
+            width: 100%;
+            font-family: 'Poppins', sans-serif;
+        }
+        button {
+            font-family: 'Poppins', sans-serif;
+            background-color: #000;
+            color: #fff;
+            border: none;
+            height: 48px;
+            width: 100%;
+            font-weight: 500;
+            font-size: 0.8rem;
+            padding: 1.2em;
+            cursor: pointer;
+            margin-top: 0.8em;
+        }
+        .error {
+            padding: 1em;
+            color: rgb(255, 0, 0);
+        }
+        .success {
+            padding: 1em;
+            color: rgb(0, 255, 34);
+        }
+    }
+    .my-orders{
+        width: 70%;
+        @media screen and (max-width: 800px) {
+            order: 1;
+            width: 100%;
+        }
+    }
+}
