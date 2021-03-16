@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { register }  from '../actions/userActions'
 import { Link, useHistory } from 'react-router-dom'
+import Meta from '../components/Meta'
 
 const RegisterPage = ({isOpen}) => {
     const [email, setEmail] = useState('');
@@ -41,6 +42,7 @@ const RegisterPage = ({isOpen}) => {
 
     return (
         <div className={isOpen ? "register-page open" : "register-page"}> 
+        <Meta title='Register' />
             <div className="register-form">
                 <h3>Sign Up</h3>
                 {error && <p className="error">{error}</p> }

@@ -5,6 +5,7 @@ import { faShoppingBag, faBars, faUser } from '@fortawesome/free-solid-svg-icons
 import { useDispatch, useSelector } from 'react-redux'
 import { logout } from '../actions/userActions'
 import { useHistory } from 'react-router-dom'
+import Search from './Search'
 
 const Header = ({isOpen, setIsOpen}) => {
     const dispatch = useDispatch();
@@ -27,22 +28,19 @@ const Header = ({isOpen, setIsOpen}) => {
             </div>
             <div className="center-menu">
                 <ul>
-                    <li><NavLink exact to='/' style={{ color: "#000" }} activeClassName="navlink-active">shop</NavLink></li>
+                    <li><NavLink exact to='/shop/1' style={{ color: "#000" }} activeClassName="navlink-active">shop</NavLink></li>
                     <li>genres</li>
                     <li>authors</li>
                     <li>find a store</li>
                 </ul>
             </div>
             <div className="search">
-                {/* <FontAwesomeIcon icon={faSearch} /> */}
-                <form> 
-                    <input type="text" className="search-bar" placeholder="Search a book ..." id=""/>
-                </form>
+                <Search />
             </div>
             <div className="right-menu">
                 <ul> 
                     <li><NavLink to={userInfo ? '/profile' : '/login'} style={{ color: "#000" }}>
-                        <FontAwesomeIcon icon={faUser} className={userInfo ? 'user-logo user-logo-active' : 'user-logo'} />
+                        <FontAwesomeIcon icon={faUser} className='user-logo' style={{ color: "#fff" }}/>
                         </NavLink>
                     </li>
                     {userInfo && userInfo.isAdmin &&  

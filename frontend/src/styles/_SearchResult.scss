@@ -1,0 +1,12 @@
+.search-result {
+    margin-top: 2em;
+    .products-found {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
+        gap: 2em;
+        margin-top: 2em;
+    }
+    .little {
+        grid-template-columns: repeat(auto-fit, minmax(125px, 225px));
+    }
+}

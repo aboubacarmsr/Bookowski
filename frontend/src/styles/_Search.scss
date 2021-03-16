@@ -4,8 +4,6 @@
     input {
         border: none;
         outline: none;
-        // border-bottom: 1px solid #000;
-        // background-color: transparent;
         padding: 1em;
         font-size: 0.8rem;
         font-weight: 500;
@@ -14,8 +12,12 @@
     }
     .search-icon {
         position: absolute;
-        top: 13px;
+        top: 10px;
+        font-size: 0.8rem;
         right: 8px;
         cursor: pointer;
+    }
+    .side {
+        top: 14px;
     }
 }

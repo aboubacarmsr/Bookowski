@@ -1,6 +1,14 @@
 .footer{
-    margin-top: 2em;
-    border-top: 1px solid #000;
+    margin-top: 8em;
+    border-top: 1px solid rgba(0, 0, 0, 0.589);
     padding: 2em;
+    font-size: 0.9rem;
     text-align: center;
+    a{
+        text-decoration: none;
+        color: #000;
+    }
+    span {
+        font-weight: 600;
+    }
 }

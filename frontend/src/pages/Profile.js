@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getUserDetails, updateUserProfile }  from '../actions/userActions'
 import { getMyOrders } from '../actions/orderActions'
 import { useHistory, Link } from 'react-router-dom'
+import Meta from '../components/Meta'
 
 const Profile = ({ isOpen }) => {
     const [email, setEmail] = useState('');
@@ -52,6 +53,7 @@ const Profile = ({ isOpen }) => {
 
     return (
         <div className={ isOpen ? "profile open" : "profile"}> 
+        <Meta title='Profile' />
             <div className="profile-form">
                 <h3>Edit Profile</h3>
                 {error && <p className="error">{error}</p> }
@@ -73,8 +75,7 @@ const Profile = ({ isOpen }) => {
             <div className="my-orders">
                 <h3>My Orders</h3>
                 {isLoadingOrders ? <p>Loading...</p> : 
-                    errorOrders ? <p> {errorOrders} </p> : 
-                        myOrders.length === 0 ? <p>No orders</p> :
+                    errorOrders ? <p> {errorOrders} </p> :
                 (
                     <div style={{ overflowX: "auto" }}>
                         <table>

@@ -122,6 +122,43 @@
       }
     }
 
+    .reviews {
+      margin-top: 2em;
+      .review {
+        padding: 0.5em;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.226);
+      }
+      .write-review{
+        margin-top: 1em;
+      }
+    }
+
+    textarea, select {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    select {
+      margin-left: 1em;
+    }
+
+    textarea{
+      width: 100%;
+      margin-top: 0.5em;
+    }
+
+    .submit-button {
+        background-color: #000;
+        color: #fff;
+        border: none;
+        height: 48px;
+        width: 100%;
+        font-weight: 500;
+        font-size: 0.8rem;
+        padding: 1.2em;
+        cursor: pointer;
+        margin-top: 0.8em;
+    }
+
     button { 
       font-family: 'Poppins', sans-serif;
     }

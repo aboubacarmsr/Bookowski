@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { login }  from '../actions/userActions'
 import { Link, useHistory } from 'react-router-dom'
+import Meta from '../components/Meta'
 
 const LoginPage = ({ isOpen }) => {
     const [email, setEmail] = useState('');
@@ -29,6 +30,7 @@ const LoginPage = ({ isOpen }) => {
 
     return (
         <div className={ isOpen ? "login-page open" : "login-page"}> 
+        <Meta title='Login' />
             <div className="login-form">
                 <h3>Sign In</h3>
                 {error && <p className="error">{error}</p> }

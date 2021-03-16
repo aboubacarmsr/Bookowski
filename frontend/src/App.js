@@ -17,6 +17,10 @@ import UserList from "./pages/UserList";
 import UserEdit from "./pages/UserEdit";
 import ProductList from "./pages/ProductList";
 import ProductEdit from "./pages/ProductEdit";
+import OrderList from "./pages/OrderList";
+import SearchResult from "./pages/SearchResult";
+import Shop from "./pages/Shop";
+import Footer from "./components/Footer";
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -62,13 +66,23 @@ function App() {
         <Route path="/admin/productlist">
           <ProductList isOpen={menuOpen} />
         </Route>
+        <Route path="/admin/orderlist">
+          <OrderList isOpen={menuOpen} />
+        </Route>
         <Route path="/admin/product/:id/edit">
           <ProductEdit isOpen={menuOpen}/>
         </Route>
         <Route path="/admin/user/:id/edit">
           <UserEdit isOpen={menuOpen}/>
         </Route>
+        <Route path="/search/:keyword">
+          <SearchResult isOpen={menuOpen} />
+        </Route>
+        <Route path="/shop/:pageNumber">
+          <Shop isOpen={menuOpen} />
+        </Route>
       </Switch>
+      <Footer />
     </div>
   );
 }

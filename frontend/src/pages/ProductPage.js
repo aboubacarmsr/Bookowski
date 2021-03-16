@@ -1,23 +1,34 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProductDetails } from "../actions/productActions";
+import { fetchProductDetails, createProductReview } from "../actions/productActions";
 import { addToCart, deleteFromCart } from "../actions/cartActions";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSquare, faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import Rating from "../components/Rating";
+import Meta from "../components/Meta";
 
 const ProductPage = ({ isOpen }) => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const [addedAnimation, setAddedAnimation] = useState(false);
+  const [rating, setRating] = useState(0);
+  const [comment, setComment] = useState('');
 
   const { isLoading, error, product } = useSelector((state) => state.productDetails);
+  const { error: errorReview, success: successReview } = useSelector((state) => state.productReview);
   const { cartItems } = useSelector((state) => state.cart);
+  const { userInfo } = useSelector((state) => state.userLogin);
 
   useEffect(() => {
+    if(successReview) {
+      alert('Review submitted');
+      setRating(0);
+      setComment('');
+      dispatch({ type: 'PRODUCT_CREATE_REVIEW_RESET' })
+    }
     dispatch(fetchProductDetails(id));
-  }, [dispatch, id]);
+  }, [dispatch, id, successReview]);
 
   //ADD OR REMOVE FROM CART
   const productExists = cartItems.find((item) => item._id === id);
@@ -38,6 +49,11 @@ const ProductPage = ({ isOpen }) => {
     }
   };
 
+  const submitHandler = (e) => {
+    e.preventDefault();
+    dispatch(createProductReview(id, {rating, comment}))
+  }
+
   return (
     <div className={isOpen ? "product-page open" : "product-page"}>
       {isLoading ? (
@@ -46,6 +62,7 @@ const ProductPage = ({ isOpen }) => {
         <h2> {error} </h2>
       ) : (
         <div className="product-page-info">
+          <Meta title={product.name}/>
           <div className="product-details">
             <div className="product-image">
               <img src={product.image} alt="" />
@@ -108,6 +125,42 @@ const ProductPage = ({ isOpen }) => {
                     <FontAwesomeIcon icon={faShoppingCart} className="fa-shopping-cart" /> 
                     <FontAwesomeIcon icon={faSquare} className="fa-square" /> 
                   </button> 
+                </div>
+                <div className="reviews">
+                  <h3>Reviews</h3>
+                  {product.reviews.map(review => (
+                      <div className="review" key={review._id}>
+                        <strong>{review.name}</strong>
+                        <Rating rating={review.rating} />
+                        <p> {review.createdAt.substring(0, 10)} </p>
+                        <p> {review.comment} </p>
+                      </div>
+                    ))}
+                    <div className="write-review">
+                      {userInfo ? 
+                      (<form onSubmit={submitHandler}>
+                        <div className="rate">
+                          <strong>Rating :</strong>
+                          <select value={rating} onChange={(e) => setRating(e.target.value)}>
+                            <option value=''> Select </option> 
+                            <option value='1'> 1 - Poor </option> 
+                            <option value='2'> 2 - Fair </option> 
+                            <option value='3'> 3 - Good </option> 
+                            <option value='4'> 4 - Very Good </option> 
+                            <option value='5'> 5 - Excellent </option> 
+                          </select>
+                        </div>
+                        <div className="comment">
+                          <textarea rows="10" cols="20"
+                            placeholder="Write a comment"
+                            value={comment}
+                            onChange={(e) => setComment(e.target.value)}
+                          />
+                        </div>
+                        {errorReview && <p> {errorReview} </p>}
+                        <button className="submit-button" type="submit"> SUBMIT </button>
+                      </form>) : (<p> Please <Link to='/login'> sign in </Link> to write a review </p>)}
+                    </div>
                 </div>
           </div>
         </div>

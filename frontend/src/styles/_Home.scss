@@ -13,7 +13,7 @@
             margin: 0 auto;
             h1{
                 margin-bottom: 2em;
-                font-family: 'Playfair Display', serif;
+                font-family: 'Housttely Signature';
             }
             p{
                 font-size: 1.1rem;
@@ -24,7 +24,7 @@
                 font-weight: 500;
             }
             button {
-                font-family: Poppins, sans-serif;
+                font-family: 'Poppins', sans-serif;
                 font-size: 0.8rem;
                 font-weight: 500;
                 border: none;
@@ -49,13 +49,12 @@
        text-align: center;
        font-size: 1.2rem;
        margin-top: 2em;
-       font-family: 'Playfair Display', serif;
+       font-family: 'Poppins', sans-serif;
     }
     .products {
         display: grid;
-        height: 450px;
         grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
-        grid-gap: 2em;
+        gap: 2em;
         margin-top: 2em;
     }
 }

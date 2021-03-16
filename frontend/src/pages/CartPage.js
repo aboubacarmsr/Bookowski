@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom'
 import { deleteFromCart, updateQuantity } from '../actions/cartActions'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
+import Meta from '../components/Meta'
 
 const CartPage = ({ isOpen }) => {
 
@@ -57,6 +58,7 @@ const CartPage = ({ isOpen }) => {
 
     return (
         <div className={ isOpen ? "cart-page open" : "cart-page"}>
+            <Meta title='My Cart'/>
             <h1 className="title">Items in my cart</h1>
             <div className="cart-wrapper">
                 <div className="items-in-cart">

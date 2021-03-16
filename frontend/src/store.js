@@ -7,7 +7,8 @@ import {
   productDetailsReducer,
   productDeleteReducer,
   productCreateReducer,
-  productUpdateReducer
+  productUpdateReducer,
+  productCreateReviewReducer
 } from "./reducers/productReducers";
 import {
   userLoginReducer,
@@ -22,7 +23,9 @@ import {
   orderCreateReducer,
   orderDetailsReducer,
   orderPayReducer,
+  orderDeliverReducer,
   myOrdersListReducer,
+  allOrdersListReducer
 } from "./reducers/orderReducers";
 
 const reducer = combineReducers({
@@ -32,6 +35,7 @@ const reducer = combineReducers({
   productDelete: productDeleteReducer,
   productCreate: productCreateReducer,
   productUpdate: productUpdateReducer,
+  productReview: productCreateReviewReducer,
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
   userDetails: userDetailsReducer,
@@ -42,7 +46,9 @@ const reducer = combineReducers({
   orderCreate: orderCreateReducer,
   orderDetails: orderDetailsReducer,
   orderPay: orderPayReducer,
+  orderDeliver: orderDeliverReducer,
   myOrdersList: myOrdersListReducer,
+  allOrdersList: allOrdersListReducer
 });
 
 //Tableau de middleware

@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchProducts } from '../actions/productActions'
+import { Link } from 'react-router-dom'
 import Product from '../components/Product'
+import Meta from '../components/Meta'
 
 const Home = ({ isOpen }) => {
-
     const dispatch = useDispatch();
     const { isLoading, error, products } = useSelector((state) => state.productList);
 
@@ -14,7 +15,7 @@ const Home = ({ isOpen }) => {
 
     let printProducts;
     if(!error) {
-        printProducts = products.map((product) => 
+        printProducts = products.slice(0,6).map((product) => 
         <Product 
             key = {product._id}
             id = {product._id}
@@ -28,19 +29,20 @@ const Home = ({ isOpen }) => {
 
     return (
         <div className={ isOpen ? "home open" : "home"}>
+            <Meta />
             <div className="welcome">
                 <div className="welcome-text">
-                    <h1>Meet your next favorite book</h1>
+                    <h1>Find your next favorite book</h1>
                     <p>Looking for a <span>classic</span> ? A High school read ? A book to offer ?</p>
                     <p>We probably have exactly what you need.</p>
-                    <button>EXPLORE</button>
+                    <Link to='/shop/1'><button>EXPLORE</button></Link>
                 </div>
                 <div className="welcome-image">
                     <img src="/images/cover.jpg" alt=""/>
                 </div>
             </div>
             <div className="title"> 
-                <h3>Selected Books</h3>
+                <h3>Latest Books</h3>
             </div>
             <div className="products">
                 { 

@@ -8,7 +8,7 @@ const PlaceOrder = ({ isOpen }) => {
     const history = useHistory();
 
     const { cartItems, shippingAddress, shippingAddress : { address, city, country, postalCode }, paymentMethod } 
-    = useSelector((state) => state.cart);
+    = useSelector((state) => state.cart); 
 
     const { success, order, error } = useSelector((state) => state.orderCreate);
 

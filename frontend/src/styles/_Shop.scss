@@ -1,0 +1,19 @@
+.shop {
+    margin-top: 2em;
+    .products {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+        gap: 2em;
+        margin-top: 2em;
+    }
+    .little {
+        grid-template-columns: repeat(auto-fit, minmax(125px, 225px));
+    }
+    .pagination {
+        margin-top: 2em;
+        margin-bottom: 2em;
+        margin-left: auto;
+        transform: translateX(-50%);
+        width: 25px;
+    }
+}

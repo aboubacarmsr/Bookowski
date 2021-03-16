@@ -16,11 +16,11 @@ const SideNav = ({ setIsOpen, isOpen }) => {
                 <FontAwesomeIcon icon={faTimes} onClick={() => setIsOpen(false)} style={{ cursor: "pointer" }}/>
             </div>
             <div className="searchbar">
-                <Search />
+                <Search sidenav />
             </div>
             <div className="menu">
                 <ul>
-                    <li><NavLink exact to='/' style={{ color: "#000" }} activeStyle={{ color: "#ff304f" }}> shop </NavLink></li>
+                    <li><NavLink exact to='/shop/a' style={{ color: "#000" }} activeStyle={{ color: "#ff304f" }}> shop </NavLink></li>
                     <li>genres</li>
                     <li>authors</li>
                     <li>find a store</li>

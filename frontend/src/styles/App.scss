@@ -1,3 +1,17 @@
+@font-face {
+    font-family: "Bulgatti";
+    src: local("Bulgatti"),
+        url("/fonts/Bulgatti.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Housttely Signature";
+    src: local("Housttely Signature"),
+        url("/fonts/HousttelySignature.ttf") format("truetype");
+}
+
+
+
 *{
     margin: 0;
     padding: 0;
@@ -41,6 +55,9 @@ a {
 @import './UserEdit';
 @import './ProductList';
 @import './ProductEdit';
+@import './OrderList';
+@import './SearchResult';
+@import './Shop';
 
 .open {
     opacity: 0.5;
@@ -63,23 +80,3 @@ table {
       background-color: #E0E0E0
     }
 
-// @font-face {
-//     font-family: "Avenir Next Regular";
-//     src: local("Avenir Next Regular"),
-//         url("/fonts/AvenirNextLTPro-Regular.otf") format("opentype");
-//     font-weight: normal;
-// }
-
-// @font-face {
-//     font-family: "Avenir Next Bold";
-//     src: local("Avenir Next Bold"),
-//         url("/fonts/AvenirNextLTPro-Bold.otf") format("opentype");
-//     font-weight: bold;
-// }
-
-// @font-face {
-//     font-family: "ITC Avant Garde Gothic Bold";
-//     src: local("ITC Avant Garde Gothic Bold"),
-//         url("/fonts/AvenirNextLTPro-Regular.otf") format("opentype");
-//     font-weight: bold;
-// }
