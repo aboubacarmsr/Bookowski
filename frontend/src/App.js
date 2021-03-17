@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import "./styles/App.scss";
 import { Switch, Route } from "react-router-dom";
 import Header from "./components/Header";
@@ -29,6 +31,7 @@ function App() {
     <div className="App">
       <Header isOpen={menuOpen} setIsOpen={setMenuOpen} />
       <SideNav isOpen={menuOpen} setIsOpen={setMenuOpen} />
+      <ToastContainer />
       <Switch>
         <Route exact path="/">
           <Home isOpen={menuOpen} />

@@ -46,7 +46,7 @@
     .name {
       font-weight: 700;
       font-size: 2.5rem;
-      font-family: 'Playfair Display', serif;
+      font-family: 'Domine', serif;
     }
     .author {
       color: rgba(0, 0, 0, 0.5);
@@ -144,6 +144,7 @@
     textarea{
       width: 100%;
       margin-top: 0.5em;
+      outline: none;
     }
 
     .submit-button {

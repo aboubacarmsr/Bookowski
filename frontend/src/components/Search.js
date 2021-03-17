@@ -11,6 +11,7 @@ const Search = ({ sidenav }) => {
         e.preventDefault();
         if(keyword.trim()) {
             history.push(`/search/${keyword}`)
+            setKeyword('');
         } else {
             history.push('/')
         }
@@ -19,7 +20,7 @@ const Search = ({ sidenav }) => {
     return (
         <div className="search">
             <form onSubmit={submitHandler}>
-                <input type="text" placeholder="Search ..." onChange={(e) => setKeyword(e.target.value)} />
+                <input type="text" placeholder="Search ..." value={keyword} onChange={(e) => setKeyword(e.target.value)} />
                 <FontAwesomeIcon icon={faSearch} className={ sidenav ? "search-icon side" : "search-icon"} 
                     onClick={submitHandler}/>
             </form>

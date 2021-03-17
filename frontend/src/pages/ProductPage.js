@@ -5,8 +5,10 @@ import { addToCart, deleteFromCart } from "../actions/cartActions";
 import { useParams, Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSquare, faShoppingCart } from '@fortawesome/free-solid-svg-icons'
+import { toast } from 'react-toastify';
 import Rating from "../components/Rating";
 import Meta from "../components/Meta";
+import Loading from "../components/Loading";
 
 const ProductPage = ({ isOpen }) => {
   const { id } = useParams();
@@ -22,7 +24,7 @@ const ProductPage = ({ isOpen }) => {
 
   useEffect(() => {
     if(successReview) {
-      alert('Review submitted');
+      toast.info('Review submitted');
       setRating(0);
       setComment('');
       dispatch({ type: 'PRODUCT_CREATE_REVIEW_RESET' })
@@ -45,7 +47,7 @@ const ProductPage = ({ isOpen }) => {
       dispatch(addToCart(product));
     }
     else {
-        alert('This product is sold out.')
+        toast.error('This product is sold out.')
     }
   };
 
@@ -57,9 +59,9 @@ const ProductPage = ({ isOpen }) => {
   return (
     <div className={isOpen ? "product-page open" : "product-page"}>
       {isLoading ? (
-        <p> Loading ... </p>
+        <Loading />
       ) : error ? (
-        <h2> {error} </h2>
+        <p className="error"> {error} </p>
       ) : (
         <div className="product-page-info">
           <Meta title={product.name}/>

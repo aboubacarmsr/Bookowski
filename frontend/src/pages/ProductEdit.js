@@ -3,6 +3,7 @@ import { useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProductDetails, updateProduct } from "../actions/productActions";
 import axios from 'axios'
+import Loading from "../components/Loading";
 
 const ProductEdit = ({ isOpen }) => {
   const { id } = useParams();
@@ -98,11 +99,11 @@ const ProductEdit = ({ isOpen }) => {
     <div className={isOpen ? "product-edit open" : "product-edit"}>
       <div className="edit-form">
         <h3>Edit Product</h3>
-        {isLoadingUpdate && <p>Loading...</p>}
+        {isLoadingUpdate && <Loading /> }
         {errorUpdate && <p>{errorUpdate}</p>}
-        {isLoading && <p>Loading...</p>}
+        {isLoading && <Loading /> }
         {error && <p>{error}</p>}
-        {isLoading ? ( <p>Loading...</p> ) : error ? ( <p className="error">{error}</p>) : (
+        {isLoading ? ( <Loading /> ) : error ? ( <p className="error">{error}</p>) : (
           <form onSubmit={submitHandler}>
             <label htmlFor="name"> Name </label>
             <input

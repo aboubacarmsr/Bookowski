@@ -4,6 +4,7 @@ import { fetchProducts } from '../actions/productActions'
 import { Link } from 'react-router-dom'
 import Product from '../components/Product'
 import Meta from '../components/Meta'
+import Loading from '../components/Loading'
 
 const Home = ({ isOpen }) => {
     const dispatch = useDispatch();
@@ -46,7 +47,7 @@ const Home = ({ isOpen }) => {
             </div>
             <div className="products">
                 { 
-                    isLoading ? (<p> Loading ... </p>) : error ? (<h2> {error} </h2>) : printProducts
+                    isLoading ? <Loading /> : error ? (<p className="error"> {error} </p>) : printProducts
                 }
             </div>
         </div>

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { listUsers, deleteUser } from '../actions/userActions'
 import { Link, useHistory } from 'react-router-dom'
+import Loading from '../components/Loading'
 
 const UserList = ({ isOpen }) => {
     const dispatch = useDispatch();
@@ -28,7 +29,7 @@ const UserList = ({ isOpen }) => {
     return (
         <div className={ isOpen ? "users-list open" : "users-list"}>
             <h2>Users</h2>
-            { isLoading ? (<p> Loading ... </p>) : error ? ( <h2> {error} </h2>) : users.length === 0 ? 
+            { isLoading ? (<Loading />) : error ? ( <p className="error"> {error} </p>) : users.length === 0 ? 
             (<p>The list is empty</p>) : 
             (<div style={{ overflowX: "auto" }}>
                         <table>

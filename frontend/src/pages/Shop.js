@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom'
 import Product from '../components/Product'
 import Paginate from '../components/Paginate'
 import Meta from '../components/Meta'
+import Loading from '../components/Loading'
 
 const Shop = ({ isOpen }) => {
     const dispatch = useDispatch();
@@ -39,7 +40,7 @@ const Shop = ({ isOpen }) => {
             </div>
             <div className= { products.length > 3 ? "products" : "products little" }>
                 { 
-                    isLoading ? (<p> Loading ... </p>) : error ? (<h2> {error} </h2>) : printProducts
+                    isLoading ? (<Loading />) : error ? (<p className="error"> {error} </p>) : printProducts
                 }
             </div>
             <div className="pagination">

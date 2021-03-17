@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchProducts, deleteProduct, createProduct } from '../actions/productActions'
 import { Link, useHistory } from 'react-router-dom'
+import Loading from '../components/Loading'
 
 const ProductList = ({ isOpen }) => {
     const dispatch = useDispatch();
@@ -44,11 +45,11 @@ const ProductList = ({ isOpen }) => {
             <h2>Products</h2>
             <button onClick={createProductHandler}> Create product </button>
             </div>
-            { isLoadingDelete && <p>Loading ...</p> }
+            { isLoadingDelete && <Loading /> }
             { errorDelete && <p>{errorDelete}</p> }
-            { isLoadingCreate && <p>Loading ...</p> }
+            { isLoadingCreate && <Loading /> }
             { errorCreate && <p>{errorCreate}</p> }
-            { isLoading ? (<p> Loading ... </p>) : error ? ( <h2> {error} </h2>) : products.length === 0 ? 
+            { isLoading ? (<Loading />) : error ? ( <p className="error"> {error} </p>) : products.length === 0 ? 
             (<p>The list is empty</p>) : 
             (<div style={{ overflowX: "auto" }}>
                         <table>

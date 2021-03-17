@@ -3,17 +3,24 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getUserDetails, updateUserProfile }  from '../actions/userActions'
 import { getMyOrders } from '../actions/orderActions'
 import { useHistory, Link } from 'react-router-dom'
+import { useForm } from 'react-hook-form'
+import { toast } from 'react-toastify'
 import Meta from '../components/Meta'
+import Loading from '../components/Loading'
 
 const Profile = ({ isOpen }) => {
+    const dispatch = useDispatch();
+    const history= useHistory(); 
+
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [message, setMessage] = useState(null);
     
-    const dispatch = useDispatch();
-    const history= useHistory(); 
+
+    const { register, handleSubmit, errors } = useForm({ mode: 'onSubmit', reValidateMode: 'onBlur' });
+
 
     //userInfo ici (différent du userInfo du Login) est créé uniquement si l'inscription a reussi
     const { isLoading, error, user } = useSelector(state => state.userDetails);
@@ -22,7 +29,7 @@ const Profile = ({ isOpen }) => {
     const { userInfo } = useSelector(state => state.userLogin);    
 
     //Pour pouvoir rediriger s'il est déjà en ligne on va vérifier l'existence du userInfo dans userLogin
-    const { success } = useSelector(state => state.userUpdateProfile);
+    // const { success } = useSelector(state => state.userUpdateProfile);
     
     //Obtenir la liste des commandes de l'utilisateur. renommer isLoading en isLoadingOrders =/ de la double destructuration
     const { isLoading: isLoadingOrders, error: errorOrders, myOrders } = useSelector(state => state.myOrdersList)
@@ -42,12 +49,12 @@ const Profile = ({ isOpen }) => {
         }
     }, [dispatch, history, userInfo, user])
 
-    const submitHandler = (e) => {
-        e.preventDefault(); 
+    const submitHandler = () => {
         if(password !== confirmPassword) {
             setMessage('Password do not match')
         } else {
             dispatch(updateUserProfile({ id: user.id, name, email, password }))
+            toast.info('Profile Updated !')
         }
     }
 
@@ -56,28 +63,50 @@ const Profile = ({ isOpen }) => {
         <Meta title='Profile' />
             <div className="profile-form">
                 <h3>Edit Profile</h3>
-                {error && <p className="error">{error}</p> }
                 {message && <p className="error">{message}</p> }
-                {success && <p className="success">Profile updated</p> }
-                {isLoading && <p>Loading...</p> }
-                <form onSubmit={submitHandler}>
+                {isLoading ? (
+                    <Loading />
+                    ) : error ? (
+                        <p className="error">{error}</p>
+                    ) : (
+                <form onSubmit={ handleSubmit(submitHandler)}>
                     <input type="text" name="name" placeholder="Name" 
-                        value={name} onChange={(e) => setName(e.target.value)}/>
+                        value={name} onChange={(e) => setName(e.target.value)} ref={register({
+                            required: "Name is required",
+                            minLength: { value: 2, message: "Can't be shorter than 2 characters"},
+                            maxLength: { value: 20, message: "Can't be longer than 20 characters"},
+                            pattern: { value: /^[a-zA-Z\s]*$/, message: "Only letters are allowed"}
+                        })}/>
+                        {errors.name && <p className="error"> {errors.name.message} </p>}
                     <input type="email" name="email" placeholder="Email"
-                        value={email} onChange= {(e) => setEmail(e.target.value)} />
+                        value={email} onChange= {(e) => setEmail(e.target.value)} ref={register({
+                            required: "Email is required",
+                            pattern: {
+                                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                                message: "Enter a valid e-mail address",
+                            }
+                        })}/>
+                        {errors.email && <p className="error"> {errors.email.message} </p>}
                     <input type="password" name="password" placeholder="Password"
-                        value={password} onChange={(e) => setPassword(e.target.value)} />
+                        value={password} onChange={(e) => setPassword(e.target.value)} ref={register({
+                            required: "Password is required",
+                            minLength: { value: 6, message: "Password should be at least 6 characters" }
+                        })}/>
+                        {errors.password && <p className="error"> {errors.password.message} </p>}
                     <input type="password" name="confirmpassword" placeholder="Confirm password"
-                        value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
+                        value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} ref={register({
+                            required: "Please confirm your password",
+                            minLength: { value: 6, message: "Password should be at least 6 characters" }
+                        })}/>
+                        {errors.confirmPassword && <p className="error"> {errors.confirmPassword.message} </p>}
                     <button type="submit">Save Changes</button>
-                </form>
+                </form>)}
             </div>
             <div className="my-orders">
                 <h3>My Orders</h3>
-                {isLoadingOrders ? <p>Loading...</p> : 
+                { isLoadingOrders ? <Loading /> : 
                     errorOrders ? <p> {errorOrders} </p> :
-                (
-                    <div style={{ overflowX: "auto" }}>
+                (<div style={{ overflowX: "auto" }}>
                         <table>
                             <thead>
                                 <tr>
@@ -90,7 +119,7 @@ const Profile = ({ isOpen }) => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {myOrders.map(order => (
+                                {myOrders && myOrders.map(order => (
                                     <tr key={order._id}> 
                                         <td> {order._id} </td>
                                         <td> {order.createdAt.substring(0,10)} </td>

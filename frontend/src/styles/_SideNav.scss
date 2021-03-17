@@ -19,9 +19,11 @@
         flex-direction: row;
         justify-content: space-between;
         .logo{
+            font-family: 'Poppins', sans-serif;
             font-weight: 700;
-            font-size: 1.3rem;
-            font-family: 'Bulgatti';
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
         }
     }
     .searchbar {

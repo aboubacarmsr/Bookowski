@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import { getOrderDetails, payOrder, deliverOrder } from "../actions/orderActions";
 import { PayPalButton } from 'react-paypal-button-v2';
+import Loading from "../components/Loading";
 
 const Order = ({ isOpen }) => {
   const [sdkReady, setSdkReady] = useState(false);
@@ -58,9 +59,9 @@ const Order = ({ isOpen }) => {
   return (
     <div className={isOpen ? "order open" : "order"}>
       {isLoading ? (
-        <p>Loading ...</p>
+        <Loading />
       ) : error ? (
-        <p> {error} </p>
+        <p className="error"> {error} </p>
       ) : (
         <div>
             <h2>Order created</h2>
@@ -112,13 +113,13 @@ const Order = ({ isOpen }) => {
               {
                 !order.isPaid && (
                   <div>
-                    {isLoadingPay && <p> Loading ...</p>}
+                    {isLoadingPay && <Loading />}
                     {!sdkReady ? <p>Loading ...</p> : 
                       <PayPalButton amount={order.totalPrice} onSuccess={successPaymentHandler} />}
                   </div>
                 )
               }
-              {isLoadingDeliver && <p>Loading...</p>}
+              {isLoadingDeliver && <Loading />}
               {userInfo && userInfo.isAdmin && order.isPaid && !order.isDelivered && 
               <button onClick={deliverHandler}> Mark As Delivered </button>}
             </div>

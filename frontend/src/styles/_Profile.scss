@@ -7,6 +7,7 @@
     }
     .profile-form {
         min-height: 50vh;
+        width: 200px;
         @media screen and (max-width: 800px) {
             width: 100%;
             order: 2;

@@ -1,22 +1,14 @@
 .login-page {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
     margin-top: 2em;
+    text-align: center;
     .login-form {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        width: 40%;
+        width: 300px;
         min-height: 50vh;
+        margin: 0 auto;
         @media screen and (max-width: 800px) {
-            width: 100%;
+            width: 90%;
         }
         padding: 1.5em 0.5em;
-        background-color: whitesmoke;
         h3{
             margin: 0 0 1em;
         }

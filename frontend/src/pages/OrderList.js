@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllOrders } from '../actions/orderActions'
 import { Link, useHistory } from 'react-router-dom'
+import Loading from '../components/Loading'
 
 const OrderList = ({ isOpen }) => {
     const dispatch = useDispatch();
@@ -21,7 +22,7 @@ const OrderList = ({ isOpen }) => {
     return (
         <div className={ isOpen ? "order-list open" : "order-list"}>
             <h2>Orders</h2>
-            { isLoading ? (<p> Loading ... </p>) : error ? ( <h2> {error} </h2>) : orders.length === 0 ? 
+            { isLoading ? (<Loading />) : error ? ( <p className="error"> {error} </p>) : orders.length === 0 ? 
             (<p>The list is empty</p>) : 
             (<div style={{ overflowX: "auto" }}>
                         <table>

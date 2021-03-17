@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import Product from '../components/Product'
 import Meta from '../components/Meta'
+import Loading from '../components/Loading'
 
 const SearchResult = ({isOpen}) => {
     const {keyword} = useParams();
@@ -12,7 +13,7 @@ const SearchResult = ({isOpen}) => {
     const { isLoading, error, products } = useSelector((state) => state.productList);
 
     useEffect(() => {
-        dispatch(fetchProducts(keyword));
+        dispatch(fetchProducts('',keyword));
     }, [dispatch, keyword])
 
     let printProducts;
@@ -35,7 +36,7 @@ const SearchResult = ({isOpen}) => {
             <h3>Results for "{keyword}" </h3>
             <div className= { products.length > 3 ? "products-found" : "products-found little" }>
                 { 
-                    isLoading ? (<p> Loading ... </p>) : error ? (<h2> {error} </h2>) : printProducts
+                    isLoading ? (<Loading />) : error ? (<p className="error"> {error} </p>) : printProducts
                 }
             </div>
         </div>

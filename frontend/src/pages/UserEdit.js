@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getUserDetails, updateUser } from "../actions/userActions";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
+import Loading from "../components/Loading";
 
 const UserEdit = ({ isOpen }) => {
   const dispatch = useDispatch();
@@ -41,10 +42,10 @@ const UserEdit = ({ isOpen }) => {
     <div className={isOpen ? "user-edit open" : "user-edit"}>
       <div className="edit-form">
         <h3>Edit User</h3>
-        {isLoadingUpdate && <p>Loading...</p>}
+        {isLoadingUpdate && <Loading />}
         {errorUpdate && <p>{errorUpdate}</p>}
         {isLoading ? (
-          <p>Loading...</p>
+          <Loading />
         ) : error ? (
           <p className="error">{error}</p>
         ) : (
