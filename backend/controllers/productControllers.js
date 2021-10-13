@@ -134,7 +134,7 @@ const deleteProduct = asyncHandler(async (req, res) => {
       )
   
       if (alreadyReviewed) {
-        res.status(400)
+        res.status(400) 
         throw new Error('Product already reviewed')
       }
   
